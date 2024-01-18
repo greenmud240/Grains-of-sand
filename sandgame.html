@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sand Incremental Game</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+
+        #sand-count {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        #sand-per-click, #upgrade-cost {
+            font-size: 18px;
+            margin-top: 10px;
+        }
+
+        button {
+            padding: 10px;
+            margin: 10px;
+            cursor: pointer;
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>Sand Incremental Game</h1>
+    <p id="sand-count">Sand: 0</p>
+    <button onclick="incrementSand()">Increment Sand</button>
+    <button onclick="upgradeSand()">Upgrade Sand (Cost: 10)</button>
+    <p id="sand-per-click">Sand per click: 1</p>
+    <p id="upgrade-cost">Upgrade Cost: 10</p>
+
+    <script>
+        let sandCount = 0;
+        let sandPerClick = 1;
+        let upgradeCost = 10;
+
+        function incrementSand() {
+            sandCount += sandPerClick;
+            updateDisplay();
+        }
+
+        function upgradeSand() {
+            if (sandCount >= upgradeCost) {
+                sandCount -= upgradeCost;
+                sandPerClick += 1;
+                upgradeCost *= 2;
+                updateDisplay();
+            }
+        }
+
+        function updateDisplay() {
+            document.getElementById('sand-count').innerText = `Sand: ${sandCount}`;
+            document.getElementById('sand-per-click').innerText = `Sand per click: ${sandPerClick}`;
+            document.getElementById('upgrade-cost').innerText = `Upgrade Cost: ${upgradeCost}`;
+        }
+    </script>
+</body>
+</html>
